@@ -1,0 +1,10 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Expérience gratuite — ORIGINE</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><a class="brand" href="index.html">ORIGINE</a><nav><a href="index.html#parcours">← Retour</a></nav></header>
+<main><section class="hero"><div class="hero-content practice"><p class="eyebrow">EXPÉRIENCE GRATUITE · 3 MINUTES</p><h2>Observer ce qui est déjà là.</h2><p class="wide" style="font-size:17px">Installe-toi confortablement. Pendant trois minutes, ne cherche rien de particulier. Remarque simplement un point de contact du corps, le mouvement naturel de la respiration, puis les pensées qui apparaissent.</p><div class="timer" id="timer">03:00</div><button class="button" id="start">Commencer</button></div></section>
+<section class="section practice"><p class="eyebrow">APRÈS L’EXPÉRIENCE</p><h2>Qu’as-tu remarqué ?</h2><textarea id="journal" class="journal" placeholder="Une sensation, une pensée, une émotion, une résistance…"></textarea><button class="button" id="save">Garder cette note sur cet appareil</button><p id="saved" class="micro"></p></section></main>
+<script>
+let running=false, left=180, it; const t=document.getElementById('timer');
+document.getElementById('start').onclick=()=>{if(running)return;running=true;it=setInterval(()=>{left--;let m=String(Math.floor(left/60)).padStart(2,'0'),s=String(left%60).padStart(2,'0');t.textContent=m+':'+s;if(left<=0){clearInterval(it);running=false;t.textContent='Terminé';}},1000)};
+const j=document.getElementById('journal'); j.value=localStorage.getItem('origine-note')||'';
+document.getElementById('save').onclick=()=>{localStorage.setItem('origine-note',j.value);document.getElementById('saved').textContent='Note enregistrée localement dans ce navigateur.'}
+</script></body></html>
